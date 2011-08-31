@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 
-namespace demo_led
+namespace DemoNetduino
 {
     public class Program
     {
@@ -8,9 +8,8 @@ namespace demo_led
         {
             var r = new DistansDetector();
             r.Start();
-       
+
             Thread.Sleep(Timeout.Infinite);
         }
-
     }
 }

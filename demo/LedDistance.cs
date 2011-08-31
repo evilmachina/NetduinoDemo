@@ -1,18 +1,17 @@
 using System;
 using System.Threading;
-using Microsoft.SPOT;
 using SecretLabs.NETMF.Hardware;
 using SecretLabs.NETMF.Hardware.Netduino;
 
-namespace demo_led
+namespace DemoNetduino
 {
-    class LedDistance
+    internal class LedDistance
     {
-        const int PwmPeriod = 20;
-        int _pwmDutyCycle;
-        PWM _led;
+        private const int PwmPeriod = 20;
+        private readonly DistansDetector distansDetector = new DistansDetector();
+        private PWM _led;
+        private int _pwmDutyCycle;
         private Timer _pwmTimer;
-        private DistansDetector distansDetector = new DistansDetector();
 
         public void Start()
         {
@@ -30,9 +29,7 @@ namespace demo_led
         public void PwmTimerCallback(Object obj)
         {
             _pwmDutyCycle = distansDetector.GetValue();
-            _led.SetDutyCycle((uint)_pwmDutyCycle);
-       }
-
-       
+            _led.SetDutyCycle((uint) _pwmDutyCycle);
+        }
     }
 }

@@ -37,6 +37,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="SimpleButton.cs" />
     <Compile Include="SimpleLED.cs" />
+    <Compile Include="Stepper.cs" />
     <Compile Include="Tmp.cs" />
   </ItemGroup>
   <ItemGroup>

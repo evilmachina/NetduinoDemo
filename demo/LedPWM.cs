@@ -1,22 +1,21 @@
 using System;
 using System.Threading;
-using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
 using SecretLabs.NETMF.Hardware;
 using SecretLabs.NETMF.Hardware.Netduino;
 
-namespace demo_led
+namespace DemoNetduino
 {
     public class LedPWM
     {
-        const int PwmPeriod = 20;
-        const uint MaxDutyCyle = 100;
+        private const int PwmPeriod = 20;
+        private const uint MaxDutyCyle = 100;
+        private readonly InterruptPort _button;
+        private readonly PWM _led;
 
-        bool _buttonState;
-        int _pwmDutyCycle;
-        int _pwmIncrement;
-        InterruptPort _button;
-        PWM _led;
+        private bool _buttonState;
+        private int _pwmDutyCycle;
+        private int _pwmIncrement;
         private Timer _pwmTimer;
 
         public LedPWM()
@@ -49,11 +48,10 @@ namespace demo_led
         {
             if (true != _buttonState) return;
 
-         
-            _pwmDutyCycle += _pwmIncrement;
-            _led.SetDutyCycle((uint)_pwmDutyCycle);
 
-            
+            _pwmDutyCycle += _pwmIncrement;
+            _led.SetDutyCycle((uint) _pwmDutyCycle);
+
 
             if ((_pwmDutyCycle == MaxDutyCyle) || (_pwmDutyCycle == 0))
             {
@@ -63,13 +61,11 @@ namespace demo_led
 
         public void OnClick(UInt32 data1, UInt32 data2, DateTime time)
         {
-           // _button.DisableInterrupt();
+            // _button.DisableInterrupt();
 
             _buttonState = (0 == data2);
 
             //_button.EnableInterrupt();
         }
-
-    
     }
 }

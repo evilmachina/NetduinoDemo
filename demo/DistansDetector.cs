@@ -1,19 +1,18 @@
-using System;
 using System.Threading;
 using Microsoft.SPOT;
 using SecretLabs.NETMF.Hardware;
 using SecretLabs.NETMF.Hardware.Netduino;
 
-namespace demo_led
+namespace DemoNetduino
 {
     public class DistansDetector
     {
+        private const float Y0 = 3;
+        private const float X0 = 315;
+        private const float Y1 = 30;
+        private const float X1 = 30;
+        private const float C = (Y1 - Y0)/(1/X1 - 1/X0);
         private readonly AnalogInput _port;
-        const float Y0 = 3;
-        const float X0 = 315;
-        const float Y1 = 30;
-        const float X1 = 30;
-        const float C = (Y1 - Y0) / (1 / X1 - 1 / X0);
 
         public DistansDetector()
         {
@@ -24,7 +23,7 @@ namespace demo_led
         public float GetDistance()
         {
             Debug.Print(_port.Read().ToString());
-            return C / (_port.Read() + (float).001) - (C / X0) + Y0;
+            return C/(_port.Read() + (float) .001) - (C/X0) + Y0;
         }
 
 
@@ -36,17 +35,11 @@ namespace demo_led
 
         public void Start()
         {
-            while(true)
+            while (true)
             {
-                
                 Debug.Print(GetDistance().ToString());
                 Thread.Sleep(200);
             }
         }
-
-
-
-        
-
     }
 }

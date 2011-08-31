@@ -1,9 +1,8 @@
-using System;
 using System.Threading;
 using Microsoft.SPOT.Hardware;
 using SecretLabs.NETMF.Hardware.Netduino;
 
-namespace demo_led
+namespace DemoNetduino
 {
     public class SimpleLed
     {
@@ -19,8 +18,6 @@ namespace demo_led
 
                 Thread.Sleep(500);
             }
-        }   
-        
-        
+        }
     }
 }
